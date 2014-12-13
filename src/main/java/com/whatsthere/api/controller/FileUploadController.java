@@ -35,7 +35,7 @@ public class FileUploadController {
     }
 
     @RequestMapping(value="/image/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("name") String hashTagText,
+    public @ResponseBody String handleFileUpload(@RequestParam("hashTagText") String hashTagText,
                                                  @RequestParam("file") MultipartFile file,
                                                  @RequestParam("timeStamp") String timeOfCapture,
                                                  @RequestParam("fbToken") String fbToken,

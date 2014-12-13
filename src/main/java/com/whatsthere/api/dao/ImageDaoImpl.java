@@ -1,10 +1,12 @@
 package com.whatsthere.api.dao;
 
 import com.whatsthere.api.data.Image;
+import com.whatsthere.api.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.joda.time.LocalDateTime;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 
@@ -13,17 +15,23 @@ import java.util.List;
  */
 public class ImageDaoImpl implements Dao {
 
+    private final HibernateUtil hibernateUtil;
+
+    private static SessionFactory sessionFactory;
+
+
+    public ImageDaoImpl() {
+        hibernateUtil = new HibernateUtil();
+        this.sessionFactory = hibernateUtil.getSessionFactory();
+    }
 
     @Override
     public void fetch(String imageId) {
 
     }
 
-    private SessionFactory sessionFactory;
 
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
+
 
     @Override
     public void store(Image image) {

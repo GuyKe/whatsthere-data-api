@@ -34,10 +34,14 @@ public class Image {
 
 
     public Image (String fileName, String hashTagText ,String fbToken,String formattedLocation,String timeOfCapture){
-        this.fileName = fileName;
+        this.setFileName(fileName);
+        this.setHashTagText(hashTagText);
+        this.setFbToken(fbToken);
         this.setFormattedLocation(formattedLocation);
         this.setLocalDateTime(timeOfCapture);
-        this.setHashTagText(hashTagText);
+    }
+
+    public Image() {
     }
 
     public void setId(int id) {
@@ -57,6 +61,10 @@ public class Image {
 
     public void setHashTagText(String url) {
         this.hashTagText = hashTagText;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public String getHashTagText() {
