@@ -6,6 +6,7 @@ import java.io.*;
 import com.whatsthere.api.data.User;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.manager.ImageStore;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +41,7 @@ public class FileUploadController {
                                                  @RequestParam("timeStamp") String timeOfCapture,
                                                  @RequestParam("fbToken") String fbToken,
                                                  @RequestParam("location") String formattedLocation){
-        String fileName = "";
+        String fileName = StringUtils.EMPTY;
         if (!file.isEmpty()) {
             try {
                fileName =  imageStore.writeFile(file.getBytes());
@@ -51,13 +52,12 @@ public class FileUploadController {
             }
             imageStore.storeImage(fileName,hashTagText,timeOfCapture,fbToken,formattedLocation);
         }
-        imageStore.fetchImageByHashtag(hashTagText);
         return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "/image/getImage/byHashtag" ,params = "tag", method = RequestMethod.GET)
-    public HttpStatus getImageByTag(final String tag) {
-        //Add response body
+    @RequestMapping(value = "/image/getImage/hashtag", method = RequestMethod.GET)
+    public @ResponseBody HttpStatus getImageByHashtag(@RequestParam("hashtag")String hashtag) {
+        imageStore.fetchImageByHashtag(hashtag);
         return HttpStatus.OK;
     }
 
