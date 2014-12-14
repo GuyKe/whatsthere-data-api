@@ -35,7 +35,7 @@ public class FileUploadController {
     }
 
     @RequestMapping(value="/image/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("hashTagText") String hashTagText,
+    public @ResponseBody HttpStatus handleFileUpload(@RequestParam("hashTagText") String hashTagText,
                                                  @RequestParam("file") MultipartFile file,
                                                  @RequestParam("timeStamp") String timeOfCapture,
                                                  @RequestParam("fbToken") String fbToken,
@@ -51,10 +51,11 @@ public class FileUploadController {
             }
             imageStore.storeImage(fileName,hashTagText,timeOfCapture,fbToken,formattedLocation);
         }
-        return "";
+        imageStore.fetchImageByHashtag(hashTagText);
+        return HttpStatus.OK;
     }
 
-    @RequestMapping(value = "/image/getImage/tag" ,params = "tag", method = RequestMethod.GET)
+    @RequestMapping(value = "/image/getImage/byHashtag" ,params = "tag", method = RequestMethod.GET)
     public HttpStatus getImageByTag(final String tag) {
         //Add response body
         return HttpStatus.OK;

@@ -6,11 +6,11 @@ import com.whatsthere.api.data.Image;
 import com.whatsthere.api.data.ImageFile;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.utils.DateTimeUtils;
-import com.whatsthere.api.utils.HibernateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by guyk on 11/5/14.
@@ -18,10 +18,14 @@ import java.security.NoSuchAlgorithmException;
 
 public class ImageStore {
 
-    private final Dao dao = new ImageDaoImpl();
+    private final Dao dao;
     private final DateTimeUtils dateTimeUtils = new DateTimeUtils();
     ImageFile imageFile;
 
+    @Autowired
+    public ImageStore(ImageDaoImpl dao) {
+        this.dao = dao;
+    }
 
     public String writeFile(byte[] fileContent) throws ImageToOldException {
         try {
@@ -33,16 +37,16 @@ public class ImageStore {
     return imageFile.getPath();
     }
 
-    public boolean storeImage(String name, String hashTagText, String timeOfCapture
+    public boolean storeImage(String locationOnStorage, String hashTagText, String timeOfCapture
             , String fbToken, String formattedLocation) {
-        Image image = new Image(name,hashTagText,fbToken,formattedLocation,timeOfCapture);
+        Image image = new Image(locationOnStorage,hashTagText,fbToken,formattedLocation,timeOfCapture);
         dao.store(image);
-        return false;
+        return true;
 
     }
 
-    public Image fetchImage(int id) {
-        return null;
+    public List<Image> fetchImageByHashtag(String hashTagText) {
+        return (List<Image>) dao.fetch(hashTagText);
     }
 }
 

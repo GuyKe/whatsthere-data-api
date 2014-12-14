@@ -1,13 +1,12 @@
 package com.whatsthere.api.data;
 
 
-import org.joda.time.LocalDateTime;
-
 import javax.annotation.Resource;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 
 /**
@@ -20,9 +19,9 @@ public class Image {
 
     @Id
     @Column(name = "id")
-    private int id;
+    private long id;
     @Column
-    private String fileName;
+    private String locationOnStorage;
     @Column
     private String hashTagText;
     @Column
@@ -33,12 +32,13 @@ public class Image {
     private  String timeOfCapture;
 
 
-    public Image (String fileName, String hashTagText ,String fbToken,String formattedLocation,String timeOfCapture){
-        this.setFileName(fileName);
+    public Image (String locationOnStorage, String hashTagText ,String fbToken,String formattedLocation,String timeOfCapture){
+        this.setLocationOnStorage(locationOnStorage);
         this.setHashTagText(hashTagText);
         this.setFbToken(fbToken);
         this.setFormattedLocation(formattedLocation);
         this.setLocalDateTime(timeOfCapture);
+        id = System.currentTimeMillis();
     }
 
     public Image() {
@@ -48,7 +48,7 @@ public class Image {
         this.id = id;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -59,12 +59,16 @@ public class Image {
         return timeOfCapture;
     }
 
-    public void setHashTagText(String url) {
+    public String getLocationOnStorage() {
+        return locationOnStorage;
+    }
+
+    public void setHashTagText(String hashTagText) {
         this.hashTagText = hashTagText;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setLocationOnStorage(String fileName) {
+        this.locationOnStorage = fileName;
     }
 
     public String getHashTagText() {

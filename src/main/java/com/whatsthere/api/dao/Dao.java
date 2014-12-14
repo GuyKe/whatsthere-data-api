@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * Created by guyk on 11/5/14.
  */
-public interface Dao {
+public interface Dao<T> {
 
     void store(Image image);
 
-    void fetch(String imageId);
+    T fetch(String hashTagText);
 }
 
