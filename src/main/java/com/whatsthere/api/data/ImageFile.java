@@ -1,5 +1,6 @@
 package com.whatsthere.api.data;
 
+import com.whatsthere.api.utils.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.joda.time.LocalDateTime;
 
@@ -19,16 +20,18 @@ public class ImageFile {
 
     private String pathToFile;
     private final static String IMAGE_PATH="/Users/guyk/tmp/";
-    private final static String IMAGE_SUFFIX = ".jpg";
+    private final static String IMAGE_SUFFIX = ".zip";
     Image image;
 
     public ImageFile(byte[] byteArray) throws IOException {
        try{
-            pathToFile =  IMAGE_PATH + LocalDateTime.now().toString() + IMAGE_SUFFIX;
-            BufferedOutputStream stream =
-                new BufferedOutputStream(new FileOutputStream(new File(pathToFile)));
-            stream.write(byteArray);
-            stream.close();
+           pathToFile =  IMAGE_PATH + LocalDateTime.now().toString() + IMAGE_SUFFIX;
+           File file = new File(pathToFile);
+           BufferedOutputStream stream =
+                new BufferedOutputStream(new FileOutputStream(file));
+           stream.write(byteArray);
+           stream.close();
+           FileUtils.zipFile(file ,pathToFile);
        }catch (IOException e) {
            throw e;
        }

@@ -6,6 +6,8 @@ import java.io.*;
 import com.whatsthere.api.data.User;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.manager.ImageStore;
+import com.whatsthere.api.transformers.MessageTransformer;
+import com.whatsthere.api.transformers.ToJsonTransformer;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,6 +30,9 @@ public class FileUploadController {
 
     private final ImageStore imageStore;
     private final String imagePath="/root/wt_data/";
+
+    @Autowired
+    private MessageTransformer toJsonTransformer;
 
     @Autowired
     public FileUploadController(ImageStore imageStore){
@@ -56,9 +61,9 @@ public class FileUploadController {
     }
 
     @RequestMapping(value = "/image/getImage/hashtag", method = RequestMethod.GET)
-    public @ResponseBody HttpStatus getImageByHashtag(@RequestParam("hashtag")String hashtag) {
-        imageStore.fetchImageByHashtag(hashtag);
-        return HttpStatus.OK;
+    public @ResponseBody String getImageByHashtag(@RequestParam("hashtag")String hashtag ,
+                                                      @RequestParam("offset") int offset) {
+        return toJsonTransformer.transform( imageStore.fetchImageByHashtag(hashtag));
     }
 
     @RequestMapping(value = "/image/getImage/location" ,params = "location", method = RequestMethod.GET)

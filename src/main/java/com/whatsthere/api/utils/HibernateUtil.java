@@ -14,7 +14,8 @@ import java.io.File;
 @Component
 @PropertySource("classpath:app.properties")
 public class HibernateUtil {
-    private static SessionFactory sessionFactory ;
+
+    private SessionFactory sessionFactory ;
 
     @Value("${hibernate.config.file}")
     private String fileLocation;
