@@ -41,7 +41,7 @@ public class ImageDaoImpl implements Dao {
     private List<Image> getImagesList(List<Image> results) {
         List<Image> imagesList = new ArrayList<Image>();
         for (Image image : results) {
-            imagesList.add(new Image(image.getLocationOnStorage(), image.getHashTagText(), image.getFbToken(), image.getFormattedLocation(), image.getTimeOfCapture()));
+            imagesList.add(image);
         }
         return imagesList;
     }

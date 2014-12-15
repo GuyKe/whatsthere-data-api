@@ -24,6 +24,7 @@ public class ToJsonTransformer implements MessageTransformer {
 
     @Override
     public String transform(List data) {
+        images = new Images();
         StringBuilder stringBuilder = new StringBuilder();
         for (Object image : data) {
             images.addImage((Image) image);

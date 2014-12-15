@@ -20,7 +20,6 @@ public class Images {
             images = new ArrayList<Image>();
         }
         images.add(image);
-
     }
 
 
