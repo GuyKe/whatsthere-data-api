@@ -1,4 +1,5 @@
 whatsthere-data-api
 =====================
 TO RUN :
-NEED TO ADD APP.CONFIG AND HIBERNATE.CFG.XML TO /WHATSTHERE/CONFIG
+need to add app.config and hibernate.cfg.xml to /whatsthere/config/
+
