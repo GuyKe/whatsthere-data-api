@@ -1,7 +1,7 @@
 package com.whatsthere.api.transformers;
 
-import com.whatsthere.api.data.Image;
 import com.google.gson.Gson;
+import com.whatsthere.api.data.Image;
 import com.whatsthere.api.data.Images;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

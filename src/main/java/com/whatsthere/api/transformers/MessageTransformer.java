@@ -1,8 +1,5 @@
 package com.whatsthere.api.transformers;
 
-import com.whatsthere.api.data.Image;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**

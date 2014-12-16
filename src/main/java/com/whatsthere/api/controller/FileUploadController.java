@@ -1,13 +1,9 @@
 package com.whatsthere.api.controller;
 
-import java.io.*;
-
-
 import com.whatsthere.api.data.User;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.manager.ImageStore;
 import com.whatsthere.api.transformers.MessageTransformer;
-import com.whatsthere.api.transformers.ToJsonTransformer;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.annotation.MultipartConfig;
+import java.io.IOException;
 
 
 @Controller

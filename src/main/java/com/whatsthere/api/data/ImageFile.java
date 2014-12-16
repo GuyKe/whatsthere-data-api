@@ -1,16 +1,12 @@
 package com.whatsthere.api.data;
 
 import com.whatsthere.api.utils.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.joda.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by guyk on 11/12/14.

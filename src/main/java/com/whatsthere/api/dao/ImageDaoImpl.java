@@ -2,7 +2,9 @@ package com.whatsthere.api.dao;
 
 import com.whatsthere.api.data.Image;
 import com.whatsthere.api.utils.HibernateUtil;
-import org.hibernate.*;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

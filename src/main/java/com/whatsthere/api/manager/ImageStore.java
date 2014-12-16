@@ -7,15 +7,16 @@ import com.whatsthere.api.data.ImageFile;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.utils.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by guyk on 11/5/14.
  */
 
+@Component
 public class ImageStore {
 
     private final Dao dao;
