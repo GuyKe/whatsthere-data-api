@@ -26,7 +26,6 @@ import java.io.IOException;
 public class FileUploadController {
 
     private final ImageStore imageStore;
-    private final String imagePath="/root/wt_data/";
 
     @Autowired
     private MessageTransformer toJsonTransformer;
