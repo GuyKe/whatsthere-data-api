@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
+import java.util.Date;
 
 
 /**
@@ -29,6 +31,8 @@ public class Image {
     private String formattedLocation;
     @Column
     private  String timeOfCapture;
+    @Column
+    private Timestamp modifyDate;
 
 
     public Image (String locationOnStorage, String hashTagText ,String fbToken,String formattedLocation,String timeOfCapture){
@@ -38,6 +42,8 @@ public class Image {
         this.setFormattedLocation(formattedLocation);
         this.setLocalDateTime(timeOfCapture);
         id = System.currentTimeMillis();
+        java.util.Date date = new Date();
+        modifyDate = new Timestamp(date.getTime());
     }
 
     public Image() {
@@ -87,6 +93,10 @@ public class Image {
 
     public String getFormattedLocation() {
         return formattedLocation;
+    }
+
+    public Timestamp getModifyDate() {
+        return modifyDate;
     }
 
 }
