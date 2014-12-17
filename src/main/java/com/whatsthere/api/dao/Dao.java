@@ -9,6 +9,8 @@ public interface Dao<T> {
 
     void store(Image image);
 
-    T fetch(String hashTagText);
+    T fetchByHashtag(String hashTagText);
+
+    T fetchById(String id);
 }
 

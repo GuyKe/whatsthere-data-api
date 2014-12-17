@@ -14,7 +14,7 @@ import java.io.IOException;
 public class ImageFile {
 
     private String pathToFile;
-    private final static String IMAGE_PATH="/whatsthere/files/images";
+    private final static String IMAGE_PATH="/whatsthere/files/images/";
     private final static String IMAGE_SUFFIX = ".zip";
     Image image;
 

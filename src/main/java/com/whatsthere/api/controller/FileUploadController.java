@@ -4,6 +4,7 @@ import com.whatsthere.api.data.User;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.manager.ImageStore;
 import com.whatsthere.api.transformers.MessageTransformer;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 @Controller
@@ -26,7 +31,7 @@ import java.io.IOException;
 public class FileUploadController {
 
     private final ImageStore imageStore;
-
+    private static final String PATH_TO_FILE = "/whatsthere/files/images/";
     @Autowired
     private MessageTransformer toJsonTransformer;
 
@@ -37,7 +42,7 @@ public class FileUploadController {
     }
 
     @RequestMapping(value="/image/upload", method=RequestMethod.POST)
-    public @ResponseBody HttpStatus handleFileUpload(@RequestParam("hashTagText") String hashTagText,
+    public HttpStatus handleFileUpload(@RequestParam("hashTagText") String hashTagText,
                                                  @RequestParam("file") MultipartFile file,
                                                  @RequestParam("timeStamp") String timeOfCapture,
                                                  @RequestParam("fbToken") String fbToken,
@@ -60,6 +65,20 @@ public class FileUploadController {
     public @ResponseBody String getImageByHashtag(@RequestParam("hashtag")String hashtag ,
                                                       @RequestParam("offset") int offset) {
         return toJsonTransformer.transform( imageStore.fetchImageByHashtag(hashtag));
+    }
+
+    @RequestMapping(value = "/image/download/byName", method = RequestMethod.GET)
+    public void getFile(
+            @RequestParam("fileName") String fileName,
+        HttpServletResponse response) {
+        response.setContentType("application/zip");
+        try {
+            InputStream is = new FileInputStream(PATH_TO_FILE + fileName);
+            IOUtils.copy(is, response.getOutputStream());
+            response.flushBuffer();
+        } catch (IOException ex) {
+            throw new RuntimeException("IOError writing file to output stream");
+        }
     }
 
     @RequestMapping(value = "/image/getImage/location" ,params = "location", method = RequestMethod.GET)

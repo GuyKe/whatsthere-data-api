@@ -23,12 +23,20 @@ public class ImageDaoImpl implements Dao {
 
 
     @Override
-    public List<Image> fetch(String hashTagText) {
+    public List<Image> fetchByHashtag(String hashTagText) {
         Session session = hibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Image.class);
         cr.add(Restrictions.like("hashTagText", hashTagText));
         List<Image> results = cr.list();
         return getImagesList(results);
+    }
+
+    @Override
+    public String fetchById(String id) {
+        Session session = hibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Image.class);
+        cr.add(Restrictions.like("id", id));
+        return cr.list().toString();
     }
 
     @Override

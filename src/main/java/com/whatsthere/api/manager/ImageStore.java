@@ -47,7 +47,7 @@ public class ImageStore {
     }
 
     public List<Image> fetchImageByHashtag(String hashTagText) {
-        return (List<Image>) dao.fetch(hashTagText);
+        return (List<Image>) dao.fetchByHashtag(hashTagText);
     }
 }
 
