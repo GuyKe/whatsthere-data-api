@@ -42,11 +42,13 @@ public class FileUploadController {
     }
 
     @RequestMapping(value="/image/upload", method=RequestMethod.POST)
-    public HttpStatus handleFileUpload(@RequestParam("hashTagText") String hashTagText,
+    @ResponseStatus(value = HttpStatus.OK)
+    public  void handleFileUpload(@RequestParam("hashTagText") String hashTagText,
                                                  @RequestParam("file") MultipartFile file,
                                                  @RequestParam("timeStamp") String timeOfCapture,
                                                  @RequestParam("fbToken") String fbToken,
                                                  @RequestParam("location") String formattedLocation){
+
         String fileName = StringUtils.EMPTY;
         if (!file.isEmpty()) {
             try {
@@ -58,7 +60,6 @@ public class FileUploadController {
             }
             imageStore.storeImage(fileName,hashTagText,timeOfCapture,fbToken,formattedLocation);
         }
-        return HttpStatus.OK;
     }
 
     @RequestMapping(value = "/image/getImage/hashtag", method = RequestMethod.GET)
@@ -71,7 +72,7 @@ public class FileUploadController {
     public void getFile(
             @RequestParam("fileName") String fileName,
         HttpServletResponse response) {
-        response.setContentType("application/zip");
+        response.setContentType("file/zip");
         try {
             InputStream is = new FileInputStream(PATH_TO_FILE + fileName);
             IOUtils.copy(is, response.getOutputStream());
