@@ -39,6 +39,13 @@ public class ImageDaoImpl implements Dao {
         return cr.list().toString();
     }
 
+    public List<String> fetchByTag(String tag) {
+        Session session = hibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Image.class);
+        cr.add(Restrictions.like("hashTag", tag));
+        return cr.list();
+    }
+
     @Override
     public void store(Image image) {
         Session session = hibernateUtil.getSessionFactory().openSession();

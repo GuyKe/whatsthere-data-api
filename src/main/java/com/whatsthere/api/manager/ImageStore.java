@@ -43,7 +43,6 @@ public class ImageStore {
         Image image = new Image(locationOnStorage,hashTagText,fbToken,formattedLocation,timeOfCapture);
         dao.store(image);
         return true;
-
     }
 
     public List<Image> fetchImageByHashtag(String hashTagText) {

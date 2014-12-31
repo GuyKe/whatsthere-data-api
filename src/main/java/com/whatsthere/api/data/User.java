@@ -2,6 +2,7 @@ package com.whatsthere.api.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -11,10 +12,7 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
 
-    /**
-     *  If facebook exist return user data , else store it
-     */
-
+    @Id
     private String userId;
     private String faceBookId;
 
