@@ -1,5 +1,8 @@
 package com.whatsthere.api.transformers;
 
+import com.whatsthere.api.data.Image;
+import com.whatsthere.api.data.Images;
+
 import java.util.List;
 
 /**
@@ -7,5 +10,5 @@ import java.util.List;
  */
 public interface MessageTransformer<T> {
 
-    public String transform(List<T> data);
+    public String transform(Images data);
 }

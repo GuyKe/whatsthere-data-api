@@ -72,7 +72,7 @@ public class FileUploadController {
     public void getFile(
             @RequestParam("fileName") String fileName,
         HttpServletResponse response) {
-        response.setContentType("file/zip");
+        response.setContentType("image/jpeg");
         try {
             InputStream is = new FileInputStream(PATH_TO_FILE + fileName);
             IOUtils.copy(is, response.getOutputStream());

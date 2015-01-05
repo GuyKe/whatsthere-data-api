@@ -7,6 +7,8 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by guyk on 11/12/14.
@@ -14,9 +16,9 @@ import java.io.IOException;
 public class ImageFile {
 
     private String pathToFile;
-    private final static String IMAGE_PATH="/whatsthere/files/images/";
-    private final static String IMAGE_SUFFIX = ".zip";
-    Image image;
+    private final static String IMAGE_PATH="/whatsthere/files/hashTagsMap/";
+    private final static String IMAGE_SUFFIX = ".jpeg";
+    private Image image;
 
     public ImageFile(byte[] byteArray) throws IOException {
        try{
@@ -26,11 +28,14 @@ public class ImageFile {
                 new BufferedOutputStream(new FileOutputStream(file));
            stream.write(byteArray);
            stream.close();
-           FileUtils.zipFile(file ,pathToFile);
+          // FileUtils.zipFile(file ,pathToFile);
        }catch (IOException e) {
            throw e;
        }
     }
+
+
+
     public Image getImage(){
         return this.image;
     }

@@ -1,6 +1,7 @@
 package com.whatsthere.api.dao;
 
 import com.whatsthere.api.data.Image;
+import com.whatsthere.api.data.Images;
 import com.whatsthere.api.utils.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -23,10 +24,10 @@ public class ImageDaoImpl implements Dao {
 
 
     @Override
-    public List<Image> fetchByHashtag(String hashTagText) {
+    public Images fetchByHashtag(String hashTagText) {
         Session session = hibernateUtil.getSessionFactory().openSession();
         Criteria cr = session.createCriteria(Image.class);
-        cr.add(Restrictions.like("hashTagText", hashTagText));
+        cr.add(Restrictions.like("hashTagText", "%" + hashTagText + "%"));
         List<Image> results = cr.list();
         return getImagesList(results);
     }
@@ -55,12 +56,12 @@ public class ImageDaoImpl implements Dao {
         session.close();
     }
 
-    private List<Image> getImagesList(List<Image> results) {
+    private Images getImagesList(List<Image> results) {
         List<Image> imagesList = new ArrayList<Image>();
         for (Image image : results) {
             imagesList.add(image);
         }
-        return imagesList;
+        return new Images(imagesList);
     }
 
 

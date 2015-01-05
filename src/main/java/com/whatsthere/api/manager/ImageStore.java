@@ -4,6 +4,7 @@ import com.whatsthere.api.dao.Dao;
 import com.whatsthere.api.dao.ImageDaoImpl;
 import com.whatsthere.api.data.Image;
 import com.whatsthere.api.data.ImageFile;
+import com.whatsthere.api.data.Images;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.utils.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class ImageStore {
         return true;
     }
 
-    public List<Image> fetchImageByHashtag(String hashTagText) {
-        return (List<Image>) dao.fetchByHashtag(hashTagText);
+    public Images fetchImageByHashtag(String hashTagText) {
+        return (Images) dao.fetchByHashtag(hashTagText);
     }
 }
 
