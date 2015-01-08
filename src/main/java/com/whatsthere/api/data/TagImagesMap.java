@@ -13,14 +13,14 @@ public class TagImagesMap {
     public void addTagImagesMap(Images images){
         checkNotNull(images);
         hashTag = new HashMap<String, Images>();
-        for(int i =0 ; i<images.getImagesLength(); i++)
+        for(int i = 0 ; i<images.getImagesLength(); i++)
         {
             if(hashTag.containsKey(images.getImage(i).getHashTagText())) {
                 hashTag.get(images.getImage(i).getHashTagText()).addImage(images.getImage(i));
             }
             else {
                 Images imageList  = new Images();
-                imageList.addImage(images.getImage(i));      ;
+                imageList.addImage(images.getImage(i));
                 hashTag.put(images.getImage(i).getHashTagText(), imageList);
             }
         }

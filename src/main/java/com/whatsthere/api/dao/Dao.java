@@ -13,7 +13,7 @@ public interface Dao<T> {
 
     T fetchByHashtag(String hashTagText);
 
-    List<String> fetchByTag(String tag);
+    List<String> fetchByEqTag(String tag);
 
     T fetchById(String id);
 }

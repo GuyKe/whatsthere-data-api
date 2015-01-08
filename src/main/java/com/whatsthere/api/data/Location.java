@@ -1,21 +1,41 @@
 package com.whatsthere.api.data;
 
+import javax.annotation.Resource;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * Created by guyk on 11/30/14.
  */
+
+@Entity
+@Table(name = "location")
+@Resource
 public class Location implements Comparable<Location> {
-    private String name;
+
+    @Id
+    @Column(name = "id")
+    private long id;
+
+    @Column(name = "longitude")
     private double longitude;
+
+    @Column(name = "latitude")
     private double latitude;
 
     // create and initialize a point with given name and
     // (latitude, longitude) specified in degrees
-    public Location(String name, double latitude, double longitude) {
-        this.name = name;
+    public Location(int id, double latitude, double longitude) {
+        this.id = id;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    public Location(){
+
+    }
     @Override
     public int compareTo(Location that) {
         Double STATUTE_MILES_PER_NAUTICAL_MILE = 1.15077945;
@@ -34,7 +54,9 @@ public class Location implements Comparable<Location> {
         return Integer.parseInt(statuteMiles.toString());
     }
 
+
+
     public String toString() {
-        return name + " (" + latitude + ", " + longitude + ")";
+        return  latitude +", "+ longitude;
     }
 }

@@ -19,9 +19,6 @@ public class ServiceConfig {
     @Value("${hibernate.config.file}")
     private String hibernateFileLocation;
 
-
-
-
     @Bean
         public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
 

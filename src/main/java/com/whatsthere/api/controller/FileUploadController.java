@@ -63,8 +63,7 @@ public class FileUploadController {
     }
 
     @RequestMapping(value = "/image/getImage/hashtag", method = RequestMethod.GET)
-    public @ResponseBody String getImageByHashtag(@RequestParam("hashtag")String hashtag ,
-                                                      @RequestParam("offset") int offset) {
+    public @ResponseBody String getImageByHashtag(@RequestParam("hashtag")String hashtag) {
         return toJsonTransformer.transform( imageStore.fetchImageByHashtag(hashtag));
     }
 
