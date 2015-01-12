@@ -2,6 +2,7 @@ package com.whatsthere.api.dao;
 
 import com.whatsthere.api.data.Image;
 import com.whatsthere.api.data.Images;
+import com.whatsthere.api.data.Location;
 import com.whatsthere.api.utils.HibernateUtil;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -49,10 +50,19 @@ public class ImageDaoImpl implements Dao {
     }
 
     @Override
-    public void store(Image image) {
+    public void storeImage(Image image) {
         Session session = hibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
         session.persist(image);
+        tx.commit();
+        session.close();
+    }
+
+    @Override
+    public void storeLocation(Location location) {
+        Session session = hibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        session.persist(location);
         tx.commit();
         session.close();
     }

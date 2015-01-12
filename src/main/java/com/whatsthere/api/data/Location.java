@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import com.google.common.base.Splitter;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by guyk on 11/30/14.
@@ -22,15 +24,42 @@ public class Location implements Comparable<Location> {
     @Column(name = "longitude")
     private double longitude;
 
+
+
     @Column(name = "latitude")
     private double latitude;
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
     // create and initialize a point with given name and
     // (latitude, longitude) specified in degrees
-    public Location(int id, double latitude, double longitude) {
+    public Location(long id, String location) {
         this.id = id;
-        this.latitude = latitude;
-        this.longitude = longitude;
+        String[] result = StringUtils.split(location,",");
+        longitude = Double.parseDouble(result[0]);
+        latitude = Double.parseDouble(result[1]);
     }
 
     public Location(){

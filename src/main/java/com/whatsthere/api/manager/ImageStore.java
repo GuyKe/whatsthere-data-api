@@ -5,13 +5,13 @@ import com.whatsthere.api.dao.ImageDaoImpl;
 import com.whatsthere.api.data.Image;
 import com.whatsthere.api.data.ImageFile;
 import com.whatsthere.api.data.Images;
+import com.whatsthere.api.data.Location;
 import com.whatsthere.api.exception.ImageToOldException;
 import com.whatsthere.api.utils.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * Created by guyk on 11/5/14.
@@ -42,7 +42,9 @@ public class ImageStore {
     public boolean storeImage(String locationOnStorage, String hashTagText, String timeOfCapture
             , String fbToken, String formattedLocation) {
         Image image = new Image(locationOnStorage,hashTagText,fbToken,formattedLocation,timeOfCapture);
-        dao.store(image);
+        Location location = new Location(image.getId(), formattedLocation);
+        dao.storeImage(image);
+        dao.storeLocation(location);
         return true;
     }
 

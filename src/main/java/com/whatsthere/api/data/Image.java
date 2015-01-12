@@ -13,7 +13,6 @@ import java.util.Date;
 @Entity
 @Table(name = "image")
 @Resource
-@SecondaryTable(name = "location", pkJoinColumns = @PrimaryKeyJoinColumn(name = "id"))
 public class Image {
 
     @Id
@@ -96,5 +95,7 @@ public class Image {
     public Timestamp getModifyDate() {
         return modifyDate;
     }
+
+
 
 }

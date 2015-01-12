@@ -1,6 +1,7 @@
 package com.whatsthere.api.dao;
 
 import com.whatsthere.api.data.Image;
+import com.whatsthere.api.data.Location;
 
 import java.util.List;
 
@@ -9,7 +10,9 @@ import java.util.List;
  */
 public interface Dao<T> {
 
-    void store(Image image);
+    void storeImage(Image image);
+
+    void storeLocation(Location location);
 
     T fetchByHashtag(String hashTagText);
 
