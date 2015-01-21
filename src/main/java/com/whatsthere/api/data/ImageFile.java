@@ -16,7 +16,7 @@ import java.util.HashMap;
 public class ImageFile {
 
     private String pathToFile;
-    private final static String IMAGE_PATH="/whatsthere/files/hashTagsMap/";
+    private final static String IMAGE_PATH="/whatsthere/files/images/";
     private final static String IMAGE_SUFFIX = ".jpeg";
     private Image image;
 
